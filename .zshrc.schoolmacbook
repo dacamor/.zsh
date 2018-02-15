@@ -88,13 +88,13 @@ source $ZSH/oh-my-zsh.sh
 #ALIAS
 alias gs="git status"
 alias gco="git commit -m"
-alias gpo="git push origin"
+alias gpush="git push origin"
 alias gpull="git pull origin"
 alias nuke="rm -rf"
 alias gc="git checkout"
 alias gm="git merge"
 alias zeesh="code ~/.zshrc"
-alias zsrc="source ~/.zshrc"
+alias zeeshme="source ~/.zshrc"
 alias ll="ls -lhA" la="ls -a"
 alias ..="cd .." 
 alias mkdir="mkdir -pv" 
@@ -102,17 +102,17 @@ alias mkdir="mkdir -pv"
 help () {
   echo "   gs                                     git status"
   echo "   gco                                    git commit -m"
-  echo "   gpo                                    git push origin"
+  echo "   gpush                                    git push origin"
   echo "   gpull                                  git pull origin"
   echo "   gc                                     git checkout"
   echo "   gm                                     git merge"
   echo "   mg                                     make and go"
   echo "   zeesh                                  Open .zshrc"
-  echo "   zsrc                                   Reload .zshrc"
-  echo "   simplehtml                             create basic js/html app"
-  echo "   init                                   create basic browserify app"
-  echo "   angular_init                           create basic angular app"
-  echo "   bzc                                    Backup .zshrc to Github"
+  echo "   zeeshme                                   Reload .zshrc"
+  echo "   simplehtml                             create basic js/html app. Parameters: stylesheet name, js file name"
+  echo "   init                                   create basic browserify app."
+  echo "   angular_init                           create basic angular app. Parameters: ProjectName"
+  echo "   bzc                                    Backup .zshrc to Github."
 }
 mg () {
   mkdir -pv "$1" && cd $_
@@ -295,18 +295,8 @@ angular_init () {
 
 </head>
 
-<body>
-  <nav></nav>
-
-  <header></header>
-
-  <article>
-    <header></header>
-    <section></section>
-    <footer></footer>
-  </article>
-
-  <footer></footer>
+<body ng-app='$1'>
+  <div ng-view><div
 
   <script src="lib/node_modules/angular/angular.min.js"></script>
 </body>
@@ -328,14 +318,23 @@ echo '{"name": "",
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.6.7"
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7"
   }
 }' >> package.json
 
 npm install
 
 cd ..
+cd app
+
+echo '{angular.module("'$1'", ["ngRoute"])
+
+}' >> app.js
+
+cd ..
 }
 
 
-export BANGAZON="/Users/pennycaudle/Workspace/bangazon/DaData.db"
+export BANGAZONCLI="/Users/pennycaudle/Workspace/bangazonCLI/src/DaData.db"
+export BANGAZONTEST="/Users/pennycaudle/Workspace/bangazonCLI/src/DaTestData.db"
