@@ -95,6 +95,7 @@ alias gc="git checkout"
 alias gm="git merge"
 alias zeesh="code ~/.zshrc"
 alias bash="nano ~/.bash_profile"
+alias zeeshy="source ~/.zshrc"
 alias ll="ls -lhA" la="ls -a"
 alias ..="cd .." 
 alias mkdir="mkdir -pv" 
@@ -128,7 +129,6 @@ zeeshme () {
   git commit -m "Updated config file"
   git push origin master
   cd "$cwd"
-  source ~/.zshrc
 }
 
 bashme () {
@@ -141,7 +141,6 @@ bashme () {
   git commit -m "Updated config file"
   git push origin master
   cd "$cwd"
-  source ~/.bash_profile
 }
 
 updatezeesh() {
