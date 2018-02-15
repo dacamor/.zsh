@@ -94,7 +94,7 @@ alias nuke="rm -rf"
 alias gc="git checkout"
 alias gm="git merge"
 alias zeesh="code ~/.zshrc"
-alias zeeshme="source ~/.zshrc"
+alias bash="nano ~/.bash_profile"
 alias ll="ls -lhA" la="ls -a"
 alias ..="cd .." 
 alias mkdir="mkdir -pv" 
@@ -118,7 +118,7 @@ mg () {
   mkdir -pv "$1" && cd $_
 }
 
-bzc () {
+zeeshme () {
   cwd=$(pwd)
   cd ~/.zsh
   git pull origin master
@@ -128,6 +128,42 @@ bzc () {
   git commit -m "Updated config file"
   git push origin master
   cd "$cwd"
+  source ~/.zshrc
+}
+
+bashme () {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp ~/.bash_profile ~/.bash_profile.virtualBox
+  mv /.bash_profile.virtualBox .
+  git add .
+  git commit -m "Updated config file"
+  git push origin master
+  cd "$cwd"
+  source ~/.bash_profile
+}
+
+updatezeesh() {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp /.zshrc.schoolmacbook ~/.zshrc
+  cp ~/.zshrc ~/.zshrc.schoolmacbook
+  cd "$cwd"
+  source ~/.zshrc
+
+}
+
+updatebash() {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp /.bash_profile.virtualBox ~/.bash_profile
+  cp ~/.bash_profile ~/.bash_profile.virtualBox
+  cd "$cwd"
+  source ~/.bash_profile
+
 }
 
 
