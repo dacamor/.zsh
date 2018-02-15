@@ -1,0 +1,361 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow do
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+#ALIAS
+alias gs="git status"
+alias gco="git commit -m"
+alias gpush="git push origin"
+alias gpull="git pull origin"
+alias nuke="rm -rf"
+alias gc="git checkout"
+alias gm="git merge"
+alias zeesh="code ~/.zshrc"
+alias bash="nano ~/.bash_profile"
+alias zeeshy="source ~/.zshrc"
+alias bashy="source ~/.bash_profile"
+alias ll="ls -lhA" la="ls -a"
+alias ..="cd .." 
+alias mkdir="mkdir -pv" 
+
+help () {
+  echo "   gs                                     git status"
+  echo "   gco                                    git commit -m"
+  echo "   gpush                                  git push origin"
+  echo "   gpull                                  git pull origin"
+  echo "   gc                                     git checkout"
+  echo "   gm                                     git merge"
+  echo "   mg                                     make and go"
+  echo "   zeesh                                  Open .zshrc"
+  echo "   zeeshme                                Reload .zshrc"
+  echo "   simplehtml                             create basic js/html app. Parameters: stylesheet name, js file name"
+  echo "   init                                   create basic browserify app."
+  echo "   angular_init                           create basic angular app. Parameters: ProjectName"
+  echo "   bzc                                    Backup .zshrc to Github."
+}
+mg () {
+  mkdir -pv "$1" && cd $_
+}
+
+zeeshme () {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp ~/.zshrc ~/.zshrc.schoolmacbook
+  mv ~/.zshrc.schoolmacbook .
+  git add .
+  git commit -m "Updated config file"
+  git push origin master
+  cd "$cwd"
+  zeeshy
+}
+
+bashme () {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp ~/.bash_profile ~/.bash_profile.virtualBox
+  mv ~/.bash_profile.virtualBox .
+  git add .
+  git commit -m "Updated config file"
+  git push origin master
+  cd "$cwd"
+}
+
+updatezeesh() {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp /.zshrc.schoolmacbook ~/.zshrc
+  cp ~/.zshrc ~/.zshrc.schoolmacbook
+  cd "$cwd"
+  zeeshy
+
+}
+
+updatebash() {
+  cwd=$(pwd)
+  cd ~/.zsh
+  git pull origin master
+  cp /.bash_profile.virtualBox ~/.bash_profile
+  cp ~/.bash_profile ~/.bash_profile.virtualBox
+  cd "$cwd"
+  bashy
+
+}
+
+
+simplehtml () {
+echo '<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nashville Software School</title>
+  <link rel="stylesheet" href="./'$1'">
+
+</head>
+
+<body>
+  <nav></nav>
+
+  <header></header>
+
+  <article>
+    <header></header>
+    <section></section>
+    <footer></footer>
+  </article>
+
+  <footer></footer>
+
+  <script src="'$2'"></script>
+</body>
+</html>' >> index.html
+
+  touch $1
+  touch $2
+}
+
+init () {
+  mkdir scripts
+  mkdir styles
+  mkdir build
+  touch ./styles/styles.css
+  touch ./scripts/main.js
+  echo '<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nashville Software School</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+
+</head>
+
+<body>
+  <nav></nav>
+
+  <header></header>
+
+  <article>
+    <header></header>
+    <section></section>
+    <footer></footer>
+  </article>
+
+  <footer></footer>
+
+  <script src="./build/bundle.js"></script>
+</body>
+</html>' >> index.html
+
+echo '{"name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-plugin-import": "^2.8.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.2.0",
+    "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-contrib-watch": "^1.0.0",
+    "gruntify-eslint": "^4.0.0"
+  }
+}' >> package.json
+
+echo '.DS_Store
+node_modules
+build' >> .gitignore
+
+echo 'module.exports = function foo(grunt) {
+	// Project configuration.
+	grunt.initConfig({
+	  pkg: grunt.file.readJSON("package.json"),
+	  watch: {
+		scripts: {
+		  files: ["**/scripts/*.js", "!node_modules/**/*.js"],
+		  tasks: ["eslint", "browserify"],
+		  options: {
+			spawn: false,
+		  },
+		},
+	  },
+	  browserify: {
+		dist: {
+		  files: {
+			"build/bundle.js": ["scripts/main.js"],
+		  },
+		},
+    options: {
+    browserifyOptions: {
+        debug: true,
+    },
+},
+	  },
+	  eslint: {
+		src: [
+		  "**/scripts/*.js",
+		  "!node_modules/**/*.js",
+		],
+	  },
+	});
+  
+	// Load the plugin that provides the "uglify" task.
+	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("gruntify-eslint");
+	grunt.loadNpmTasks("grunt-browserify");
+  
+	// Default task(s).
+	grunt.registerTask("default", ["eslint", "browserify", "watch"]);
+  };' >> Gruntfile.js
+
+  echo '{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "no-console": ["warn"],
+        "no-useless-escape": ["warn"],
+        "no-unused-vars": ["warn"],
+        "indent": ["error", "tab"],
+        "semi": 0,
+        "quotes": ["error", "double"],
+        "eqeqeq": 2,
+        "no-trailing-spaces": 0
+    }
+}' >> .eslintrc.json
+
+npm install
+}
+
+angular_init () {
+  mkdir lib
+  mkdir app
+  
+  echo '<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nashville Software School</title>
+
+</head>
+
+<body ng-app='$1'>
+  <div ng-view><div
+
+  <script src="lib/node_modules/angular/angular.min.js"></script>
+</body>
+</html>' >> index.html
+
+echo '.DS_Store
+lib' >> .gitignore
+
+cd lib
+
+
+echo '{"name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7"
+  }
+}' >> package.json
+
+npm install
+
+cd ..
+cd app
+
+echo '{angular.module("'$1'", ["ngRoute"])
+
+}' >> app.js
+
+cd ..
+}
+
+
+export BANGAZONCLI="/Users/pennycaudle/Workspace/bangazonCLI/src/DaData.db"
+export BANGAZONTEST="/Users/pennycaudle/Workspace/bangazonCLI/src/DaTestData.db"
