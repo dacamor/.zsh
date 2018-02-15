@@ -129,6 +129,7 @@ zeeshme () {
   git commit -m "Updated config file"
   git push origin master
   cd "$cwd"
+  zeeshy
 }
 
 bashme () {
