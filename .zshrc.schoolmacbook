@@ -94,9 +94,7 @@ alias nuke="rm -rf"
 alias gc="git checkout"
 alias gm="git merge"
 alias zeesh="code ~/.zshrc"
-alias bash="nano ~/.bash_profile"
 alias zeeshy="source ~/.zshrc"
-alias bashy="source ~/.bash_profile"
 alias ll="ls -lhA" la="ls -a"
 alias ..="cd .." 
 alias mkdir="mkdir -pv" 
@@ -110,11 +108,11 @@ help () {
   echo "   gm                                     git merge"
   echo "   mg                                     make and go"
   echo "   zeesh                                  Open .zshrc"
-  echo "   zeeshme                                Reload .zshrc"
+  echo "   zeeshme                                Reload .zshrc from git"
   echo "   simplehtml                             create basic js/html app. Parameters: stylesheet name, js file name"
   echo "   init                                   create basic browserify app."
   echo "   angular_init                           create basic angular app. Parameters: ProjectName"
-  echo "   bzc                                    Backup .zshrc to Github."
+  echo "   zeeshme                                Backup .zshrc to Github."
 }
 mg () {
   mkdir -pv "$1" && cd $_
@@ -133,18 +131,6 @@ zeeshme () {
   zeeshy
 }
 
-bashme () {
-  cwd=$(pwd)
-  cd ~/.zsh
-  git pull origin master
-  cp ~/.bash_profile ~/.bash_profile.virtualBox
-  mv /.bash_profile.virtualBox .
-  git add .
-  git commit -m "Updated config file"
-  git push origin master
-  cd "$cwd"
-}
-
 updatezeesh() {
   cwd=$(pwd)
   cd ~/.zsh
@@ -153,17 +139,6 @@ updatezeesh() {
   cp ~/.zshrc ~/.zshrc.schoolmacbook
   cd "$cwd"
   zeeshy
-
-}
-
-updatebash() {
-  cwd=$(pwd)
-  cd ~/.zsh
-  git pull origin master
-  cp /.bash_profile.virtualBox ~/.bash_profile
-  cp ~/.bash_profile ~/.bash_profile.virtualBox
-  cd "$cwd"
-  bashy
 
 }
 
