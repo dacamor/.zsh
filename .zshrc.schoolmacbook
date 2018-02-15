@@ -96,6 +96,7 @@ alias gm="git merge"
 alias zeesh="code ~/.zshrc"
 alias bash="nano ~/.bash_profile"
 alias zeeshy="source ~/.zshrc"
+alias bashy="source ~/.bash_profile"
 alias ll="ls -lhA" la="ls -a"
 alias ..="cd .." 
 alias mkdir="mkdir -pv" 
@@ -151,7 +152,7 @@ updatezeesh() {
   cp /.zshrc.schoolmacbook ~/.zshrc
   cp ~/.zshrc ~/.zshrc.schoolmacbook
   cd "$cwd"
-  source ~/.zshrc
+  zeeshy
 
 }
 
@@ -162,7 +163,7 @@ updatebash() {
   cp /.bash_profile.virtualBox ~/.bash_profile
   cp ~/.bash_profile ~/.bash_profile.virtualBox
   cd "$cwd"
-  source ~/.bash_profile
+  bashy
 
 }
 
